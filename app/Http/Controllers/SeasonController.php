@@ -60,6 +60,7 @@ class SeasonController extends Controller
     public function show(Season $season)
     {
         //return view
+
         return view('season.view', compact('season'));
     }
 

@@ -48,7 +48,7 @@
                                                 {{--                                                    @csrf--}}
                                                 {{--                                                </form>--}}
                                                 <a>
-                                                    {!!Form::open(['action' => ['App\Http\Controllers\ClubController@destroy', $leagues->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                                    {!!Form::open(['action' => ['App\Http\Controllers\LeagueController@destroy', $leagues->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                     {{Form::hidden('_method', 'DELETE')}}
                                                     {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
                                                     {!!Form::close()!!}

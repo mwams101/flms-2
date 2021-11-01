@@ -37,7 +37,7 @@
                             <tbody>
                             @if($table->count() == 0)
                                 <tr>
-                                    <td colspan="5" class="text-center"> No Seasonal tables available</td>
+                                    <td colspan="11" class="text-center"> No Seasonal tables available</td>
                                 </tr>
                             @else
                                 @foreach ($table as $tables)

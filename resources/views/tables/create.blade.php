@@ -23,7 +23,7 @@
 
                     <div class="col">
 
-                        <form action="{{ route('season.show') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
+                        <form action="{{ route('tables.store') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
 
 
                             <h3 class="text-center">Insert League Tables</h3><br>

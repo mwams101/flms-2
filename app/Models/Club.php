@@ -37,7 +37,7 @@ class Club extends Model
 
     public function tables()
     {
-        return $this->hasOne(Table::class);
+        return $this->belongsTo(Table::class, 'club_id');
     }
 
 }

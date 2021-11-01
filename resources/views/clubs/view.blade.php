@@ -83,7 +83,7 @@
                                                         <td>{{ $player->nationality }}</td>
                                                         <td>
                                                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                            {!!Form::open(['action' => ['App\Http\Controllers\ClubController@destroy', $player->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                                            {!!Form::open(['action' => ['App\Http\Controllers\PlayerController@destroy', $player->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                             {{Form::hidden('_method', 'DELETE')}}
                                                             {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
                                                             {!!Form::close()!!}

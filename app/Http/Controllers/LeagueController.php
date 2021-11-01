@@ -76,7 +76,7 @@ class LeagueController extends Controller
     {
 
         $rules = [
-            'league_name' => 'required|leagues,league_name|max:25',
+            'league_name' => 'required|max:25',
             'description' => 'nullable|max:100'
         ];
 
@@ -88,12 +88,11 @@ class LeagueController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         } else { //if validation is successful
 
-            //create and store club in database
-            $league = League::create($request->all());
-
-            //redirect to show club route with success message
-            return redirect()->route('leagues.show', [$league])
-                ->with('success', "League {$league->name} Successfully Updated");
+            $league = League::find($id);
+            $league->league_name = $request->input('league_name');
+            $league->description = $request->input('description');
+            $league->update();
+            return redirect()->back()->with('status','League Updated Successfully');
         }
 
 

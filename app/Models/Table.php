@@ -36,9 +36,9 @@ class Table extends Model
     {
         return $this->belongsTo( Season::class, 'season_id');
     }
-    public function clubs()
+    public function club()
     {
-        return $this->hasMany(Club::class);
+        return $this->hasOne(Club::class,'id' ,'club_id');
     }
 }
 

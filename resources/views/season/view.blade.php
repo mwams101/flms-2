@@ -17,6 +17,7 @@
                                 <h3 class="text-center">Season information</h3><br>
 
                                 <div class="mb-2">
+
                                     <div class="col-sm-12"><strong>Season : </strong> {{ $season->name }}</div>
                                 </div>
 
@@ -51,6 +52,7 @@
                                                 <th>matches played</th>
                                                 <th>won</th>
                                                 <th>drawn</th>
+                                                <th>lost</th>
                                                 <th>goals Scored</th>
                                                 <th>goals Conceded</th>
                                                 <th>goal difference</th>
@@ -60,14 +62,14 @@
                                             </thead>
 
                                             <tbody>
-                                            @if($season->tables == 0)
+                                            @if($season->table->count() == 0)
                                                 <tr>
                                                     <td colspan="9" class="text-center"> No Season stats Available</td>
                                                 </tr>
                                             @else
-                                                @foreach ($season->tables as $tables)
+                                                @foreach ($season->table as $tables)
                                                     <tr>
-                                                        <td>{{ $tables->clubs->name }}</td>
+                                                        <td>{{ $tables->club->name }}</td>
                                                         <td>{{ $tables->matches_played }}</td>
                                                         <td>{{ $tables->won }}</td>
                                                         <td>{{ $tables->drawn }}</td>
@@ -78,10 +80,12 @@
                                                         <td>{{ $tables->points }}</td>
                                                         <td>
                                                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                            {!!Form::open(['action' => ['App\Http\Controllers\tableController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                                            <div class="form-group row">
+                                                            {!!Form::open(['action' => ['App\Http\Controllers\TableController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                             {{Form::hidden('_method', 'DELETE')}}
                                                             {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
                                                             {!!Form::close()!!}
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach
