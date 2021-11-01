@@ -23,4 +23,15 @@ class League extends Model
         'description',
     ];
 
+    public function clubs()
+    {
+        return $this->hasMany(Club::class, 'id');
+    }
+    public function seasons()
+    {
+        return $this->belongsTo(Season::class);
+    }
+
+
 }
+

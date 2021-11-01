@@ -27,7 +27,17 @@ class Club extends Model
 
     public function players()
     {
-        return $this->hasMany('App\Models\Player', 'club_id');
+        return $this->hasMany(Player::class);
+    }
+
+    public function leagues()
+    {
+        return $this->belongsTo(League::class);
+    }
+
+    public function tables()
+    {
+        return $this->hasOne(Table::class);
     }
 
 }

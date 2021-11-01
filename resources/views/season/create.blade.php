@@ -3,9 +3,7 @@
 @section('content')
     <div class="container" style="font-family: 'Crete Round', serif; ">
 
-        @if (session('status'))
-            <h6 class="alert alert-success">{{ session('status') }}</h6>
-        @endif
+        @include('inc.messages')
 
         <div class="card" style="border-radius: 10px;">
 
@@ -18,15 +16,14 @@
                             <img src="{{ asset('img/club.png') }}" height="200px" width="200px" class="img-responsive center-block d-block mx-auto">
                         </div><br><br>
 
-                        <h3 class="card-title">Stats table</h3>
+                        <h3 class="card-title">Create Season</h3>
                         <p class="card-text" style="font-weight: 500;">Once created, the season will be added to the system.</p>
-                        <a href="#" class="text-center">Learn more</a>
 
                     </div>
 
                     <div class="col">
 
-                        <form action="{{ url('add-season') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
+                        <form action="{{ route('season.store') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
 
 
                             <h3 class="text-center">Season Create</h3><br>

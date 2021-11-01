@@ -18,7 +18,6 @@
 
                         <h3 class="card-title">{{ $club->name }}</h3>
                         <p class="card-text" style="font-weight: 500;">{{ $club->description }}</p>
-                        <a href="#" class="text-center">Learn more</a>
 
                     </div>
 
@@ -54,7 +53,7 @@
                                     <div class="card-body">
 
                                         <div class="mt-2 mb-3">
-                                            <a type="button" class="btn btn-success" href="{{ route('clubs.create') }}">
+                                            <a type="button" class="btn btn-success" href="{{ route('players.create', $club->id) }}">
                                                 Add Player
                                             </a>
                                         </div>

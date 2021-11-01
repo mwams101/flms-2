@@ -3,9 +3,7 @@
 @section('content')
     <div class="container" style="font-family: 'Crete Round', serif; ">
 
-        @if (session('status'))
-            <h6 class="alert alert-success">{{ session('status') }}</h6>
-        @endif
+        @include('inc.messages')
 
         <div class="card" style="border-radius: 10px;">
 
@@ -18,15 +16,14 @@
                             <img src="{{ asset('img/stats.png') }}" height="200px" width="200px" class="img-responsive center-block d-block mx-auto">
                         </div><br><br>
 
-                        <h3 class="card-title">Stats table</h3>
-                        <p class="card-text" style="font-weight: 500;">Once created, the country will be added to the system allowing for a categorized search on leagues, clubs or players that are in that country.</p>
-                        <a href="#" class="text-center">Learn more</a>
+                        <h3 class="card-title">Create Stats table</h3>
+
 
                     </div>
 
                     <div class="col">
 
-                        <form action="{{ url('add-table') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
+                        <form action="{{ route('season.show') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
 
 
                             <h3 class="text-center">Insert League Tables</h3><br>

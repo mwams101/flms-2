@@ -31,13 +31,14 @@ class Table extends Model
         'points',
     ];
 
-    public function season()
+
+    public function seasons()
     {
-        return $this->belongsTo('App\Models\Season', 'season_id');
+        return $this->belongsTo( Season::class, 'season_id');
     }
-    public function club()
+    public function clubs()
     {
-        return $this->belongsTo('App\Models\Club', 'Club_id');
+        return $this->hasMany(Club::class);
     }
 }
 

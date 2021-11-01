@@ -6,19 +6,17 @@
         <div class="row">
             <div class="col-md-12">
 
-                @if (session('status'))
-                    <h6 class="alert alert-success">{{ session('status') }}</h6>
-                @endif
+                @include('inc.messages')
 
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit & Update Players Information
-                            <a href="{{ url('/players/view') }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ route('players.show', $player->id) }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('update-player/'.$player->id) }}" method="POST">
+                        <form action="{{ route('players.update', $player->id) }}" method="POST">
                             @csrf
                             @method('PUT')
 
@@ -27,7 +25,7 @@
                                 <input type="text" name="first_name" value="{{$player->first_name}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Last Name</label>
+                                <label for="Last name">Last Name</label>
                                 <input type="text" name="last_name" value="{{$player->last_name}}" class="form-control">
                             </div>
                             <div class="form-group mb-3">

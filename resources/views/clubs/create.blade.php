@@ -28,7 +28,7 @@
                             @csrf
 
                             <h3 class="text-center">Insert Club information</h3><br>
-                            <p style="font-weight: 500;">Enter stats of a League you want added to the system</p>
+                            <p style="font-weight: 500;">Enter Club you want added to the system</p>
 
                             <div class="mb-2">
                                 <label class="form-group"></label>

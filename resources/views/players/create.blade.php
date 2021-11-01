@@ -3,9 +3,7 @@
 @section('content')
     <div class="container" style="font-family: 'Crete Round', serif; ">
 
-        @if (session('status'))
-            <h6 class="alert alert-success">{{ session('status') }}</h6>
-        @endif
+        @include('inc.messages')
 
         <div class="card" style="border-radius: 10px;">
 
@@ -15,7 +13,7 @@
 
                     <div class="col" style="padding: 25px;">
                         <div>
-                            <img src="{{ asset('img/club.png') }}" height="200px" width="200px" class="img-responsive center-block d-block mx-auto">
+                            <img src="{{ asset('img/soccer.png') }}" height="200px" width="200px" class="img-responsive center-block d-block mx-auto">
                         </div><br><br>
 
                         <h3 class="card-title">Player Create</h3>
@@ -26,7 +24,7 @@
 
                     <div class="col">
 
-                        <form action="{{ url('add-player') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
+                        <form action="{{ route('players.store') }}" method="post" id='create-club-form' class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
 
 
                             <h3 class="text-center">Player Create</h3><br>

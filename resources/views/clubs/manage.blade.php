@@ -44,12 +44,21 @@
                                     <td>
                                         <div class="d-grid gap-2 d-md-block">
                                             <a type="button" href="{{ route('clubs.show', $club->id) }}" class="btn btn-primary btn-sm">View</a>
-                                            <a class="btn btn-danger btn-sm" type="button" onclick="event.preventDefault();
-                                                    document.getElementById('delete-club').submit();"> Delete</a>
+                                            <a type="button" href="{{ route('clubs.edit', $club->id) }}" class="btn btn-primary btn-sm">Edit</a>
+{{--                                            <a class="btn btn-danger btn-sm" type="button" onclick="event.preventDefault();--}}
+{{--                                                    document.getElementById('delete-club').submit();"> Delete</a>--}}
 
-                                                <form id="delete-club" action="{{ route('clubs.delete', $club->id) }}" method="DELETE" style="display: none;">
-                                                    @csrf
-                                                </form>
+{{--                                                <form id="delete-club" action="{{ route('clubs.delete', $club->id) }}" method="POST" style="display: none;">--}}
+{{--                                                    @csrf--}}
+{{--                                                </form>--}}
+                                            <a>
+                                            {!!Form::open(['action' => ['App\Http\Controllers\ClubController@destroy', $club->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                            {{Form::hidden('_method', 'DELETE')}}
+                                            {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
+                                            {!!Form::close()!!}
+                                            </a>
+
+
                                         </div>
                                     </td>
                                 </tr>

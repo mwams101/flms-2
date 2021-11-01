@@ -3,9 +3,7 @@
 @section('content')
     <div class="container" style="font-family: 'Crete Round', serif; ">
 
-        @if (session('status'))
-            <h6 class="alert alert-success">{{ session('status') }}</h6>
-        @endif
+        @include('inc.messages')
 
         <div class="card" style="border-radius: 10px;">
 
@@ -19,14 +17,14 @@
                         </div><br><br>
 
                         <h3 class="card-title">Country</h3>
-                        <p class="card-text" style="font-weight: 500;">Once created, the country will be added to the system allowing for a categorized search on leagues, clubs or players that are in that country.</p>
+                        <p class="card-text" style="font-weight: 500;">Once created, the League will be added to the system allowing for a categorized search on leagues, clubs or players that are in that country.</p>
                         <a href="#" class="text-center">Learn more</a>
 
                     </div>
 
                     <div class="col">
 
-                        <form action="{{ url('add-league') }}" method="post" class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
+                        <form action="{{ route('leagues.store') }}" method="post" id='create-league-form' class="form-group w-75 mt-50" style="margin-left: 50px; padding: 25px;" >
 
 
                             <h3 class="text-center">Create A League</h3><br>
@@ -41,7 +39,7 @@
 
                             <div class="mb-2">
                                 <label class="form-group"></label>
-                                <input type="text" class="form-control" placeholder="league Description" name="description">
+                                <textarea type="text" class="form-control" placeholder="league Description" name="description"></textarea>
                             </div>
 
 

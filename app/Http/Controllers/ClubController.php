@@ -57,7 +57,7 @@ class ClubController extends Controller
             $club = Club::create($request->all());
 
             //redirect to show club route with success message
-            return redirect()->route('club.show', [$club])
+            return redirect()->route('clubs.show', [$club])
                 ->with('success', "Club {$club->name} Successfully Created");
         }
     }
@@ -82,7 +82,7 @@ class ClubController extends Controller
     {
         $club = Club::find($id);
         $club->name = $request->input('name');
-        $club->club_description = $request->input('club_description');
+        $club->description = $request->input('club_description');
         $club->country = $request->input('country');
         $club->founded = $request->input('founded');
         $club->update();

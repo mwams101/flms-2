@@ -1,14 +1,30 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Table;
-
+use Illuminate\Support\Facades\Validator;
+use PharIo\Manifest\Application;
 use Illuminate\Http\Request;
+;
 
 
 class TableController extends Controller
 {
+
+    /**
+     * Return a listing of all tables
+     **/
+    public function manage()
+    {
+        //get all tables from database ordered in ascending alphabetical order
+        $table = Table::orderBy('points', 'asc')->get();
+
+        //return view
+        return view('tables.manage', compact('table'));
+    }
+
     //
     public function create()
     {
@@ -17,26 +33,44 @@ class TableController extends Controller
 
     public function store(Request $request)
     {
-        $table = new Table;
-        $table->table_id = $request->input('table_id');
-        $table->club_id = $request->input('club_id');
-        $table->matches_played = $request->input('matches_played');
-        $table->won = $request->input('won');
-        $table->drawn = $request->input('drawn');
-        $table->lost = $request->input('lost');
-        $table->goals_scored = $request->input('goals_scored');
-        $table->goals_conceded = $request->input('goals_conceded');
-        $table->goal_difference = $request->input('goal_difference');
-        $table->points = $request->input('points');
 
+        $rules = [
+            'season_id'=>'required|integer|min:1',
+            'club_id'=>'required|integer|max:25',
+            'matches_played'=>'required|integer|min:0',
+            'won'=>'required|integer|min:0',
+            'drawn'=>'required|integer|min:0',
+            'lost'=>'required|integer|min:0',
+            'goals_scored'=>'required|integer|min:0',
+            'goals_conceded'=>'required|integer|min:0',
+            'goal_difference'=>'required|integer|min:0',
+            'points'=>'required|integer|min:0'
+        ];
 
+        //validate inputs from request
+        $validator = Validator::make($request->all(), $rules);
 
-        $table->save();
-        return redirect()->back()->with('status','league Table Added Successfully');
+        if($validator->fails()) { //if validation fails
+            //return back with validation error messages
+            return redirect()->back()->withErrors($validator->errors());
+        } else { //if validation is successful
+
+            //create and store table in database
+            $table = Table::create($request->all());
+
+            //redirect to show table route with success message
+            return redirect()->route('tables.show', [$table])
+                ->with('success', "Statistics {$table->season_id} Successfully Created");
+        }
     }
-    public function index()
+
+    /**
+     * Show a specific table in storage
+     * @param Table $table
+     **/
+    public function show(Table $table)
     {
-        $table = Table::all();
+        //return view
         return view('tables.view', compact('table'));
     }
 
@@ -48,23 +82,51 @@ class TableController extends Controller
 
     public function update(Request $request, $id)
     {
-        $table = Table::find($id);
-        $table->matches_played = $request->input('matches_played');
-        $table->won = $request->input('won');
-        $table->drawn = $request->input('drawn');
-        $table->lost = $request->input('lost');
-        $table->goals_scored = $request->input('goals_scored');
-        $table->goals_conceded = $request->input('goals_conceded');
-        $table->goal_difference = $request->input('goal_difference');
-        $table->points = $request->input('points');
+        $rules = [
+//            'season_id'=>'required|integer|min:1',
+//            'club_id'=>'required|integer|max:25|unique:tables',
+            'matches_played'=>'required|integer|min:0',
+            'won'=>'required|integer|min:0',
+            'drawn'=>'required|integer|min:0',
+            'lost'=>'required|integer|min:0',
+            'goals_scored'=>'required|integer|min:0',
+            'goals_conceded'=>'required|integer|min:0',
+            'goal_difference'=>'required|integer|min:0',
+            'points'=>'required|integer|min:0'
+        ];
 
-        $table->update();
-        return redirect()->back()->with('status','Table Updated Successfully');
+        //validate inputs from request
+        $validator = Validator::make($request->all(), $rules);
+
+        if($validator->fails()) { //if validation fails
+            //return back with validation error messages
+            return redirect()->back()->withErrors($validator->errors());
+        } else { //if validation is successful
+
+            $table = Table::find($id);
+            $table->season_id = $request->input('season_id');
+            $table->club_id = $request->input('club_id');
+            $table->matches_played = $request->input('matches_played');
+            $table->won = $request->input('won');;
+            $table->lost = $request->input('lost');
+            $table->drawn = $request->input('drawn');
+            $table->goals_scored = $request->input('goal_scored');
+            $table->goals_conceded = $request->input('goals_conceded');
+            $table->goal_difference = $request->input('goal_difference');
+            $table->points = $request->input('points');
+            $table->update();
+            return redirect()->back()->with('status','Club Updated Successfully');
+
+
+
+
+        }
     }
+
     public function destroy($id)
     {
-        $Table = Table::find($id);
-        $Table->delete();
-        return redirect()->back()->with('status','League Deleted Successfully');
+        $table = Table::find($id);
+        $table->delete();
+        return redirect()->back()->with('status','Table Deleted Successfully');
     }
 }

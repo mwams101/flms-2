@@ -27,38 +27,44 @@ Route::get('/', function () {
 });
 
 
-//league section
-Route::get('/leagues/create', function () {
-    return view('leagues.create');
+/**
+ *  League Routes
+ **/
+Route::prefix('leagues')->middleware(['auth'])->group(function () {
+    Route::get('/manage', [LeagueController::class, 'manage'])->name('leagues.manage');
+    Route::get('/create', [LeagueController::class, 'create'])->name('leagues.create');
+    Route::post('/store', [LeagueController::class, 'store'])->name('leagues.store');
+    Route::get('/{league}/show', [LeagueController::class, 'show'])->name('leagues.show');
+    Route::get('/{league}/edit', [LeagueController::class, 'edit'])->name('leagues.edit');
+    Route::put('/{league}/update', [LeagueController::class, 'update'])->name('leagues.update');
+    Route::delete('/{league}/delete', [LeagueController::class, 'destroy'])->name('leagues.delete');
 });
-Route::get('add-league', [LeagueController::class, 'create']);
-Route::post('add-league', [LeagueController::class, 'store']);
-Route::get('/leagues/view', [LeagueController::class, 'index']);
-Route::get('edit-league/{id}', [LeagueController::class, 'edit']);
-Route::put('update-league/{id}', [LeagueController::class, 'update']);
-Route::delete('delete-league/{id}', [LeagueController::class, 'destroy'])->name('destroy');
 
-//season
-Route::get('/season/create', function () {
-    return view('season.create');
+/**
+ *  season Routes
+ **/
+Route::prefix('season')->middleware(['auth'])->group(function () {
+    Route::get('/manage', [SeasonController::class, 'manage'])->name('season.manage');
+    Route::get('/create', [SeasonController::class, 'create'])->name('season.create');
+    Route::post('/store', [SeasonController::class, 'store'])->name('season.store');
+    Route::get('/{season}/show', [SeasonController::class, 'show'])->name('season.show');
+    Route::get('/{season}/edit', [SeasonController::class, 'edit'])->name('season.edit');
+    Route::put('/{season}/update', [SeasonController::class, 'update'])->name('season.update');
+    Route::delete('/{season}/delete', [SeasonController::class, 'destroy'])->name('season.delete');
 });
-Route::get('add-season', [SeasonController::class, 'create']);
-Route::post('add-season', [SeasonController::class, 'store']);
-Route::get('/season/view', [SeasonController::class, 'index']);
-Route::get('edit-season/{id}', [SeasonController::class, 'edit']);
-Route::put('update-season/{id}', [SeasonController::class, 'update']);
-Route::delete('delete-season/{id}', [SeasonController::class, 'destroy'])->name('destroy');
 
-//Tables section
-Route::get('/tables/create', function () {
-    return view('tables.create');
+/**
+ *  tables Routes
+ **/
+Route::prefix('tables')->middleware(['auth'])->group(function () {
+    Route::get('/manage', [TableController::class, 'manage'])->name('tables.manage');
+    Route::get('/create', [TableController::class, 'create'])->name('tables.create');
+    Route::post('/store', [TableController::class, 'store'])->name('tables.store');
+    Route::get('/{table}/show', [TableController::class, 'show'])->name('tables.show');
+    Route::get('/{table}/edit', [TableController::class, 'edit'])->name('tables.edit');
+    Route::put('/{table}/update', [TableController::class, 'update'])->name('tables.update');
+    Route::delete('/{table}/delete', [TableController::class, 'destroy'])->name('tables.delete');
 });
-Route::get('add-table', [TableController::class, 'create']);
-Route::post('add-table', [TableController::class, 'store']);
-Route::get('/tables/view', [TableController::class, 'index']);
-Route::get('edit-table/{id}', [TableController::class, 'edit']);
-Route::put('update-table/{id}', [TableController::class, 'update']);
-Route::delete('delete-table/{id}', [TableController::class, 'destroy'])->name('destroy');
 
 /**
  *  Clubs Routes
@@ -69,22 +75,23 @@ Route::prefix('clubs')->middleware(['auth'])->group(function () {
     Route::post('/store', [ClubController::class, 'store'])->name('clubs.store');
     Route::get('/{club}/show', [ClubController::class, 'show'])->name('clubs.show');
     Route::get('/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit');
-    Route::patch('/{club}/update', [ClubController::class, 'update'])->name('clubs.update');
+    Route::put('/{club}/update', [ClubController::class, 'update'])->name('clubs.update');
     Route::delete('/{club}/delete', [ClubController::class, 'destroy'])->name('clubs.delete');
 });
 
 
-//player section
-Route::get('/players/create', function () {
-    return view('players.create');
+/**
+ *  players Routes
+ **/
+Route::prefix('players')->middleware(['auth'])->group(function () {
+    Route::get('/manage', [PlayerController::class, 'manage'])->name('players.manage');
+    Route::get('/create', [PlayerController::class, 'create'])->name('players.create');
+    Route::post('/store', [PlayerController::class, 'store'])->name('players.store');
+    Route::get('/{player}/show', [PlayerController::class, 'show'])->name('players.show');
+    Route::get('/{player}/edit', [PlayerController::class, 'edit'])->name('players.edit');
+    Route::put('/{player}/update', [PlayerController::class, 'update'])->name('players.update');
+    Route::delete('/{player}/delete', [PlayerController::class, 'destroy'])->name('players.delete');
 });
-Route::get('add-player', [PlayerController::class, 'create']);
-Route::post('add-player', [PlayerController::class, 'store']);
-Route::get('/players/view', [PlayerController::class, 'index']);
-Route::get('edit-player/{id}', [PlayerController::class, 'edit']);
-Route::put('update-player/{id}', [PlayerController::class, 'update']);
-Route::delete('delete-player/{id}', [PlayerController::class, 'destroy'])->name('destroy');
-
 
 
 

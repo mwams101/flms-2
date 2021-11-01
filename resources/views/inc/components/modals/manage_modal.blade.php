@@ -10,10 +10,11 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body col text-left">
-                <a href="\tables\create" class="text-decoration-none">Leagues</a><br>
-                <a href="\players\create" class="text-decoration-none">Players</a><br>
+                <a href="{{ route('leagues.manage') }}" class="text-decoration-none">Leagues</a><br>
+                <a href="{{ route('players.manage') }}" class="text-decoration-none">Players</a><br>
                 <a href="{{ route('clubs.manage') }}" class="text-decoration-none">Clubs</a><br>
-                <a href="\season\create" class="text-decoration-none">Seasons</a><br>
+                <a href="{{ route('season.manage') }}" class="text-decoration-none">Seasons</a><br>
+                <a href="{{ route('tables.manage') }}" class="text-decoration-none">Seasonal tables</a><br>
 
             </div>
 

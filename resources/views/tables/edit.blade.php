@@ -6,21 +6,28 @@
         <div class="row">
             <div class="col-md-12">
 
-                @if (session('status'))
-                    <h6 class="alert alert-success">{{ session('status') }}</h6>
-                @endif
+                @include('inc.messages')
 
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit & Update League tables
-                            <a href="{{ url('/tables/view') }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ route('tables.show', $table->id) }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">
 
-                        <form action="{{ url('update-table/'.$table->id) }}" method="POST">
+                        <form action="{{ route('tables.update', $table->id) }}" method="POST">
                             @csrf
                             @method('PUT')
+                            <div class="form-group mb-3">
+                                <label for="">season Id</label>
+                                <input type="number" name="season_id" value="{{$table->season_id}}" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">club id</label>
+                                <input type="number" name="club_id" value="{{$table->club_id}}" class="form-control">
+                            </div>
+
                             <div class="form-group mb-3">
                                 <label for="">matches played</label>
                                 <input type="number" name="matches_played" value="{{$table->matches_played}}" class="form-control">

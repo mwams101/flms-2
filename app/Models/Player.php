@@ -27,6 +27,6 @@ class Player extends Model
     ];
     public function club()
     {
-        return $this->belongsTo('App\Models\Club', 'club_id');
+        return $this->belongsTo(Club::class);
     }
 }
