@@ -34,7 +34,7 @@ Route::prefix('leagues')->middleware(['auth'])->group(function () {
     Route::get('/manage', [LeagueController::class, 'manage'])->name('leagues.manage');
     Route::get('/create', [LeagueController::class, 'create'])->name('leagues.create');
     Route::post('/store', [LeagueController::class, 'store'])->name('leagues.store');
-    Route::get('/{league}/show', [LeagueController::class, 'show'])->name('leagues.show');
+    Route::get('/{season}/show', [LeagueController::class, 'show'])->name('season.show');
     Route::get('/{league}/edit', [LeagueController::class, 'edit'])->name('leagues.edit');
     Route::put('/{league}/update', [LeagueController::class, 'update'])->name('leagues.update');
     Route::delete('/{league}/delete', [LeagueController::class, 'destroy'])->name('leagues.delete');

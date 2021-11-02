@@ -59,8 +59,8 @@ class TableController extends Controller
             $table = Table::create($request->all());
 
             //redirect to show table route with success message
-            return redirect()->route('tables.show', [$table])
-                ->with('success', "Statistics {$table->season_id} Successfully Created");
+            return redirect()->route('season.show', [$table->season_id])
+                ->with('success', "Statistics {$table->seasons->name} Successfully Created");
         }
     }
 
@@ -115,10 +115,8 @@ class TableController extends Controller
             $table->goal_difference = $request->input('goal_difference');
             $table->points = $request->input('points');
             $table->update();
+
             return redirect()->back()->with('status','Club Updated Successfully');
-
-
-
 
         }
     }
