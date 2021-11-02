@@ -60,7 +60,7 @@ class TableController extends Controller
 
             //redirect to show table route with success message
             return redirect()->route('season.show', [$table->season_id])
-                ->with('success', "Statistics {$table->seasons->name} Successfully Created");
+                ->with('success', "Statistics for {$table->seasons->name} Successfully Created");
         }
     }
 
