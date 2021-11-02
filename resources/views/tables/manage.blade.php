@@ -54,7 +54,7 @@
                                         <td>{{ $tables->points }}</td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
-                                                <a type="button" href="{{ route('tables.show', $tables->id) }}" class="btn btn-primary btn-sm">View</a>
+                                                <a type="button" href="{{ route('season.show', $tables->seasons->id) }}" class="btn btn-primary btn-sm">View</a>
                                                 <a type="button" href="{{ route('tables.edit', $tables->id) }}" class="btn btn-primary btn-sm">Edit</a>
                                                 <a>
                                                     {!!Form::open(['action' => ['App\Http\Controllers\ClubController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}

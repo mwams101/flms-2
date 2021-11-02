@@ -31,7 +31,7 @@ class Season extends Model
     }
     public function table()
     {
-        return $this->hasMany(Table::class, 'id',);
+        return $this->hasMany(Table::class);
     }
 
 }

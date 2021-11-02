@@ -35,15 +35,15 @@ class TableController extends Controller
     {
 
         $rules = [
-            'season_id'=>'required|integer|min:1',
-            'club_id'=>'required|integer|max:25',
+            'season_id'=>'required|integer|min:1|exists:seasons,id',
+            'club_id'=>'required|integer|min:1|exists:clubs,id',
             'matches_played'=>'required|integer|min:0',
-            'won'=>'required|integer|min:0',
-            'drawn'=>'required|integer|min:0',
-            'lost'=>'required|integer|min:0',
+            'won'=>'required|integer|min:0|lte:matches_played',
+            'drawn'=>'required|integer|min:0|lte:matches_played',
+            'lost'=>'required|integer|min:0|lte:matches_played',
             'goals_scored'=>'required|integer|min:0',
             'goals_conceded'=>'required|integer|min:0',
-            'goal_difference'=>'required|integer|min:0',
+            'goal_difference'=>'required|integer',
             'points'=>'required|integer|min:0'
         ];
 
@@ -66,12 +66,12 @@ class TableController extends Controller
 
     /**
      * Show a specific table in storage
-     * @param Table $table
+     * @param Table $season
      **/
-    public function show(Table $table)
+    public function show(Table $season)
     {
         //return view
-        return view('tables.view', compact('table'));
+        return view('season.view', compact('season'));
     }
 
     public function edit($id)
@@ -83,15 +83,15 @@ class TableController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-//            'season_id'=>'required|integer|min:1',
-//            'club_id'=>'required|integer|max:25|unique:tables',
+            'season_id'=>'required|integer|min:1|exists:seasons,id',
+            'club_id'=>'required|integer|min:1|exists:clubs,id',
             'matches_played'=>'required|integer|min:0',
-            'won'=>'required|integer|min:0',
-            'drawn'=>'required|integer|min:0',
-            'lost'=>'required|integer|min:0',
+            'won'=>'required|integer|min:0|lte:matches_played',
+            'drawn'=>'required|integer|min:0|lte:matches_played',
+            'lost'=>'required|integer|min:0|lte:matches_played',
             'goals_scored'=>'required|integer|min:0',
             'goals_conceded'=>'required|integer|min:0',
-            'goal_difference'=>'required|integer|min:0',
+            'goal_difference'=>'required|integer',
             'points'=>'required|integer|min:0'
         ];
 
