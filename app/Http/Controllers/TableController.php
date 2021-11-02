@@ -59,8 +59,8 @@ class TableController extends Controller
             $table = Table::create($request->all());
 
             //redirect to show table route with success message
-            return redirect()->route('tables.show', [$table])
-                ->with('success', "Statistics {$table->season_id} Successfully Created");
+            return redirect()->route('season.show', [$table->season_id])
+                ->with('success', "Statistics for {$table->seasons->name} Successfully Created");
         }
     }
 

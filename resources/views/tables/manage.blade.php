@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Seasonal Stats Table</h4>
+                    <div class="card-header bg-dark">
+                        <h4  style="color: white">Seasonal Stats Table</h4>
                     </div>
                     <div class="card-body">
 
@@ -17,7 +17,7 @@
                             </a>
                         </div>
 
-                        <table id="tables-table" class="table table-bordered table-striped">
+                        <table id="tables-table" class="table table-striped table-dark">
                             <thead>
                             <tr>
                                 <th>Season ID</th>
@@ -31,6 +31,7 @@
                                 <th>GD</th>
                                 <th>points</th>
                                 <th>actions</th>
+                                <th>delete</th>
 
                             </tr>
                             </thead>
@@ -56,14 +57,16 @@
                                             <div class="d-grid gap-2 d-md-block">
                                                 <a type="button" href="{{ route('season.show', $tables->seasons->id) }}" class="btn btn-primary btn-sm">View</a>
                                                 <a type="button" href="{{ route('tables.edit', $tables->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-grid gap-2 d-md-block">
                                                 <a>
                                                     {!!Form::open(['action' => ['App\Http\Controllers\ClubController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                     {{Form::hidden('_method', 'DELETE')}}
                                                     {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
                                                     {!!Form::close()!!}
                                                 </a>
-
-
                                             </div>
                                         </td>
                                     </tr>
