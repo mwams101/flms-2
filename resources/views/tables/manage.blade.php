@@ -20,7 +20,7 @@
                         <table id="tables-table" class="table table-striped table-dark">
                             <thead>
                             <tr>
-                                <th>Season ID</th>
+                                <th>Season</th>
                                 <th>Team</th>
                                 <th>played</th>
                                 <th>won</th>

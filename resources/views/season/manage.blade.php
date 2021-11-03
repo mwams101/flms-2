@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Seasons Table</h4>
+                <div class="card ">
+                    <div class="card-header bg-dark">
+                        <h4 style="color: white">Seasons Table</h4>
                     </div>
                     <div class="card-body">
 
@@ -17,7 +17,7 @@
                             </a>
                         </div>
 
-                        <table id="season-table" class="table table-bordered table-striped">
+                        <table id="tables-table" class="table table-striped table-dark">
                             <thead>
                             <tr>
 
@@ -26,6 +26,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Actions</th>
+                                <th>Delete</th>
 
                             </tr>
                             </thead>
@@ -45,20 +46,16 @@
                                             <div class="d-grid gap-2 d-md-block">
                                                 <a type="button" href="{{ route('season.show', $seasons->id) }}" class="btn btn-primary btn-sm">View</a>
                                                 <a type="button" href="{{ route('season.edit', $seasons->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                {{--                                            <a class="btn btn-danger btn-sm" type="button" onclick="event.preventDefault();--}}
-                                                {{--                                                    document.getElementById('delete-club').submit();"> Delete</a>--}}
-
-                                                {{--                                                <form id="delete-club" action="{{ route('season.delete', $seasons->id) }}" method="POST" style="display: none;">--}}
-                                                {{--                                                    @csrf--}}
-                                                {{--                                                </form>--}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-grid gap-2 d-md-block">
                                                 <a>
                                                     {!!Form::open(['action' => ['App\Http\Controllers\SeasonController@destroy', $seasons->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                     {{Form::hidden('_method', 'DELETE')}}
                                                     {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
                                                     {!!Form::close()!!}
                                                 </a>
-
-
                                             </div>
                                         </td>
                                     </tr>

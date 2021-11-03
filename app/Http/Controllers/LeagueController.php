@@ -17,7 +17,7 @@ class LeagueController extends Controller
     public function manage()
     {
         //get all leagues from database ordered in ascending alphabetical order
-        $league = League::orderBy('league_name', 'asc')->get();
+        $league = League::orderBy('points', 'desc')->get();
 
         //return view
         return view('leagues.manage', compact('league'));
