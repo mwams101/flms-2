@@ -20,6 +20,10 @@
 
                                     <div class="col-sm-12"><strong>Season : </strong> {{ $season->name }}</div>
                                 </div>
+                                <div class="mb-2">
+
+                                    <div class="col-sm-12"><strong>Season ID : </strong> {{ $season->id }}</div>
+                                </div>
 
                                 <div class="mb-2">
                                     <div class="col-sm-12"><strong>Start Date : </strong> {{ $season->start_date }}</div>
@@ -34,8 +38,8 @@
                         <div class="row mt-4" style="width: 100%">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4>League Table Stats</h4>
+                                    <div class="card-header bg-dark">
+                                        <h4 style="color: white">League Table Stats</h4>
                                     </div>
                                     <div class="card-body">
 
@@ -45,7 +49,7 @@
                                             </a>
                                         </div>
 
-                                        <table id="players-table" class="table table-bordered table-striped">
+                                        <table id="stats-table" class="table table-striped table-dark">
                                             <thead>
                                             <tr>
                                                 <th>club</th>
@@ -80,11 +84,14 @@
                                                         <td>{{ $tables->points }}</td>
                                                         <td>
                                                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                            <div class="form-group row">
-                                                            {!!Form::open(['action' => ['App\Http\Controllers\TableController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-                                                            {{Form::hidden('_method', 'DELETE')}}
-                                                            {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
-                                                            {!!Form::close()!!}
+
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-grid gap-2 d-md-block">
+                                                                {!!Form::open(['action' => ['App\Http\Controllers\TableController@destroy', $tables->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                                                                {{Form::hidden('_method', 'DELETE')}}
+                                                                {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}
+                                                                {!!Form::close()!!}
                                                             </div>
                                                         </td>
                                                     </tr>

@@ -1,55 +1,51 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-sm-6">
-                <div class="card-box bg-blue">
+                <div class="card">
                     <div class="inner">
-                        <h3> {{ $clubs }} </h3>
-                        <p> Total Clubs </p>
+                        <h3 class="card-header bg-dark" style="color: white"> {{ $clubs }} </h3>
+                        <p class="card-body"> Total Clubs </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                     </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
             <div class="col-lg-3 col-sm-6">
-                <div class="card-box bg-green">
+                <div class="card">
                     <div class="inner">
-                        <h3> {{ $players }} </h3>
-                        <p> Total Players </p>
+                        <h3 class="card-header bg-dark" style="color: white"> {{ $players }} </h3>
+                        <p class="card-body"> Total Players </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-money" aria-hidden="true"></i>
                     </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
-                <div class="card-box bg-orange">
+                <div class="card">
                     <div class="inner">
-                        <h3> {{ $leagues }} </h3>
-                        <p> Total leagues </p>
+                        <h3 class="card-header bg-dark" style="color: white"> {{ $leagues }} </h3>
+                        <p class="card-body"> Total leagues </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                     </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
-                <div class="card-box bg-red">
+                <div class="card ">
                     <div class="inner">
-                        <h3> {{ $seasons }} </h3>
-                        <p> Total Seasons </p>
+                        <h3 class="card-header bg-dark" style="color: white"> {{ $seasons }} </h3>
+                        <p class="card-body"> Total Seasons </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-users"></i>
                     </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>

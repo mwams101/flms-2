@@ -31,6 +31,10 @@
                                 </div>
 
                                 <div class="mb-2">
+                                    <div class="col-sm-12"><strong>Club ID : </strong> {{ $club->id }}</div>
+                                </div>
+
+                                <div class="mb-2">
                                     <div class="col-sm-12"><strong>Club Country : </strong> {{ $club->country }}</div>
                                 </div>
 
@@ -47,8 +51,8 @@
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4>Players</h4>
+                                    <div class="card-header bg-dark">
+                                        <h4 style="color: white">Players</h4>
                                     </div>
                                     <div class="card-body">
 
@@ -58,7 +62,7 @@
                                             </a>
                                         </div>
 
-                                        <table id="players-table" class="table table-bordered table-striped">
+                                        <table id="players-table" class="table table-striped table-dark">
                                             <thead>
                                             <tr>
                                                 <th>First Name</th>
@@ -66,13 +70,14 @@
                                                 <th>Age</th>
                                                 <th>Nationality</th>
                                                 <th>Actions</th>
+                                                <th>Delete</th>
                                             </tr>
                                             </thead>
 
                                             <tbody>
                                             @if($club->players->count() == 0)
                                                 <tr>
-                                                    <td colspan="5" class="text-center"> No Players Available</td>
+                                                    <td colspan="6" class="text-center"> No Players Available</td>
                                                 </tr>
                                             @else
                                                 @foreach ($club->players as $player)
@@ -82,7 +87,9 @@
                                                         <td>{{ $player->age }}</td>
                                                         <td>{{ $player->nationality }}</td>
                                                         <td>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                            <a href="{{ route('players.edit', $player->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                        </td>
+                                                        <td class="d-grid gap-2 d-md-block">
                                                             {!!Form::open(['action' => ['App\Http\Controllers\PlayerController@destroy', $player->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                                                             {{Form::hidden('_method', 'DELETE')}}
                                                             {{Form::submit('Delete', ['class' => 'btn btn-danger btn-sm'])}}

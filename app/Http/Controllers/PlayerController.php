@@ -57,8 +57,8 @@ class PlayerController extends Controller
 
 
     /**
-     * Show a specific club in storage
-     * @param Club $player
+     * Show a specific player in storage
+     * @param PLayer $player
      **/
     public function show(Player $player)
     {
