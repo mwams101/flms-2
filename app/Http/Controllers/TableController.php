@@ -115,10 +115,8 @@ class TableController extends Controller
             $table->goal_difference = $request->input('goal_difference');
             $table->points = $request->input('points');
             $table->update();
+
             return redirect()->back()->with('status','Club Updated Successfully');
-
-
-
 
         }
     }
