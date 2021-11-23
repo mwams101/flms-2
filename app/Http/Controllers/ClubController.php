@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use PharIo\Manifest\Application;
 
 
 class ClubController extends Controller
@@ -16,7 +15,7 @@ class ClubController extends Controller
     public function manage()
     {
         //get all clubs from database ordered in ascending alphabetical order
-        $clubs = Club::orderBy('name', 'asc')->get();
+        $clubs = Club::orderBy('name', 'asc')->paginate(4);
 
         //return view
         return view('clubs.manage', compact('clubs'));
@@ -58,7 +57,7 @@ class ClubController extends Controller
 
             //redirect to show club route with success message
             return redirect()->route('clubs.show', [$club])
-                ->with('success', "Club {$club->name} Successfully Created");
+                ->with('status', "Club {$club->name} Successfully Created");
         }
     }
 

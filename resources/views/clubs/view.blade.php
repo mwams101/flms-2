@@ -16,35 +16,32 @@
                             <img src="{{ asset('img/club.png') }}" height="200px" width="200px" class="img-responsive center-block d-block mx-auto">
                         </div><br><br>
 
-                        <h3 class="card-title">{{ $club->name }}</h3>
-                        <p class="card-text" style="font-weight: 500;">{{ $club->description }}</p>
+                        <div class="mb-2">
+                            <div class="col-sm-12"><strong>Club Name : </strong> {{ $club->name }}</div>
+                        </div>
 
+                        <div class="mb-2">
+                            <div class="col-sm-12"><strong>Club ID : </strong> {{ $club->id }}</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="col-sm-12"><strong>Club Country : </strong> {{ $club->country }}</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="col-sm-12"><strong>Founded : </strong> {{ $club->founded }}</div>
+                        </div>
+
+                        <div class="mb-2">
+                            <div class="col-sm-12"><strong>Number of Players : </strong> {{ $club->players->count() }}</div>
+                        </div>
                     </div>
 
                     <div class="col-sm-6">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h3 class="text-center">Club information</h3><br>
+                                <h3 class="text-center">Club Players</h3><br>
 
-                                <div class="mb-2">
-                                    <div class="col-sm-12"><strong>Club Name : </strong> {{ $club->name }}</div>
-                                </div>
-
-                                <div class="mb-2">
-                                    <div class="col-sm-12"><strong>Club ID : </strong> {{ $club->id }}</div>
-                                </div>
-
-                                <div class="mb-2">
-                                    <div class="col-sm-12"><strong>Club Country : </strong> {{ $club->country }}</div>
-                                </div>
-
-                                <div class="mb-2">
-                                    <div class="col-sm-12"><strong>Founded : </strong> {{ $club->founded }}</div>
-                                </div>
-
-                                <div class="mb-2">
-                                    <div class="col-sm-12"><strong>Number of Players : </strong> {{ $club->players->count() }}</div>
-                                </div>
                             </div>
                         </div>
 

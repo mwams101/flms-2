@@ -28,10 +28,10 @@ class HomeController extends Controller
     public function index()
     {
         $context = [
-            'clubs' => Club::all()->count(),
-            'players' => Player::all()->count(),
-            'leagues' => League::all()->count(),
-            'seasons' => Season::all()->count(),
+            'clubs' => Club::all(),
+            'players' => Player::all(),
+            'leagues' => League::all(),
+            'seasons' => Season::all(),
         ];
 
         return view('home', $context);

@@ -69,9 +69,12 @@
                                     </td>
                                 </tr>
                             @endforeach
+
+
                             @endif
                             </tbody>
                         </table>
+                        <td>{{$clubs->links()}}</td>
 
                     </div>
                 </div>

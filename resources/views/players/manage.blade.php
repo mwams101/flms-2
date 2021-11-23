@@ -17,7 +17,7 @@
                             </a>
                         </div>
 
-                        <table id="players-table" id="players-table" class="table table-striped table-dark">
+                        <table id="players-table" id="players-table" class="table table-striped table-dark table-sm">
                             <thead>
                             <tr>
 
@@ -46,15 +46,6 @@
                                             <div class="d-grid gap-2 d-md-block">
                                                 <a type="button" href="{{ route('players.show', $player->id) }}" class="btn btn-primary btn-sm">View</a>
                                                 <a type="button" href="{{ route('players.edit', $player->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                {{--                                            <a class="btn btn-danger btn-sm" type="button" onclick="event.preventDefault();--}}
-                                                {{--                                                    document.getElementById('delete-club').submit();"> Delete</a>--}}
-
-                                                {{--                                                <form id="delete-club" action="{{ route('clubs.delete', $player->id) }}" method="POST" style="display: none;">--}}
-                                                {{--                                                    @csrf--}}
-                                                {{--                                                </form>--}}
-
-
-
                                             </div>
                                         </td>
                                         <td>
