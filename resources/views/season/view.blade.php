@@ -52,16 +52,17 @@
                                         <table id="stats-table" class="table table-striped table-dark">
                                             <thead>
                                             <tr>
-                                                <th>club</th>
-                                                <th>matches played</th>
-                                                <th>won</th>
-                                                <th>drawn</th>
-                                                <th>lost</th>
-                                                <th>goals Scored</th>
-                                                <th>goals Conceded</th>
-                                                <th>goal difference</th>
-                                                <th>points</th>
-                                                <th>Actions</th>
+                                                <td>club</td>
+                                                <td>matches played</td>
+                                                <td>won</td>
+                                                <td>drawn</td>
+                                                <td>lost</td>
+                                                <td>goals Scored</td>
+                                                <td>goals Conceded</td>
+                                                <td>goal difference</td>
+                                                <td>points</td>
+                                                <td>Actions</td>
+                                                <td>Delete</td>
                                             </tr>
                                             </thead>
 
@@ -83,7 +84,7 @@
                                                         <td>{{ $tables->goal_difference }}</td>
                                                         <td>{{ $tables->points }}</td>
                                                         <td>
-                                                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                            <a href="{{ route('tables.edit', $tables->id) }}" class="btn btn-primary btn-sm">Edit</a>
 
                                                         </td>
                                                         <td>

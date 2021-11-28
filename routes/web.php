@@ -6,6 +6,7 @@ use App\Http\Controllers\LeagueController;
 use App\Http\Controllers\SeasonController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\UserInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,9 +93,16 @@ Route::prefix('players')->middleware(['auth'])->group(function () {
     Route::put('/{player}/update', [PlayerController::class, 'update'])->name('players.update');
     Route::delete('/{player}/delete', [PlayerController::class, 'destroy'])->name('players.delete');
 });
+Route::prefix('user_information')->middleware(['auth'])->group(function () {
+    Route::get('/edit', [UserInformationController::class, 'edit'])->name('user_information.edit');
+    Route::put('/update', [UserInformationController::class, 'update'])->name('user_information.update');
+});
+
+
 Auth::routes();
 Route::get('/change-password','App\Http\Controllers\Auth\ChangePasswordController@index')->name('change-password');
 Route::post('/change-password','App\Http\Controllers\Auth\ChangePasswordController@changePassword')->name('password.update');
+
 
 
 

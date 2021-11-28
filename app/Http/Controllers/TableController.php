@@ -82,13 +82,14 @@ class TableController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $rules = [
             'season_id'=>'required|integer|min:1|exists:seasons,id',
             'club_id'=>'required|integer|min:1|exists:clubs,id',
-            'matches_played'=>'required|integer|min:0',
-            'won'=>'required|integer|min:0|lte:matches_played',
-            'drawn'=>'required|integer|min:0|lte:matches_played',
-            'lost'=>'required|integer|min:0|lte:matches_played',
+            'matches_played'=>'required|integer|min:0|',
+            'won'=>'required|integer|min:0',
+            'drawn'=>'required|integer|min:0',
+            'lost'=>'required|integer|min:0',
             'goals_scored'=>'required|integer|min:0',
             'goals_conceded'=>'required|integer|min:0',
             'goal_difference'=>'required|integer',
@@ -110,13 +111,13 @@ class TableController extends Controller
             $table->won = $request->input('won');;
             $table->lost = $request->input('lost');
             $table->drawn = $request->input('drawn');
-            $table->goals_scored = $request->input('goal_scored');
+            $table->goals_scored = $request->input('goals_scored');
             $table->goals_conceded = $request->input('goals_conceded');
             $table->goal_difference = $request->input('goal_difference');
             $table->points = $request->input('points');
             $table->update();
 
-            return redirect()->back()->with('status','Club Updated Successfully');
+            return redirect()->route('season.show', [$table->season_id])->with('status','Club Updated Successfully');
 
         }
     }

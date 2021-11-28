@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Edit & Update League tables
-                            <a href="{{ route('tables.show', $table->id) }}" class="btn btn-danger float-end">BACK</a>
+                            <a href="{{ route('season.show', $table->season_id) }}" class="btn btn-danger float-end">BACK</a>
                         </h4>
                     </div>
                     <div class="card-body">

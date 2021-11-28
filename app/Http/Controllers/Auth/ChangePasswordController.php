@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\auth;
 use App\Models\User;
+use App\Models\UserInformation;
 use App\Http\Controllers\Controller;
 //use http\Client\Curl\User;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class ChangePasswordController extends Controller
 
         return view('auth.passwords.change');
     }
+
     public function changePassword(Request $request){
 
         $this->validate($request,[
@@ -28,7 +30,7 @@ class ChangePasswordController extends Controller
         ]);
 
         $hashedPassword = Auth::user()->password;
-        if(Hash::check($request->oldpassword,$hashedPassword)){
+        if(Hash::check($request->oldpassword, $hashedPassword)){
 
             $user = User::find(Auth::id());
             $user->password = Hash::make($request->password);

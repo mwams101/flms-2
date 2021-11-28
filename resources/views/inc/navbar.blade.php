@@ -36,6 +36,7 @@
                             <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#manage-modal"href="#">Manage</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#create-modal" href="#">Create</a>
+                            <a class="dropdown-item" href="{{route('user_information.edit')}}">Edit user information</a>
                             <a class="dropdown-item" href="{{route('change-password')}}">Change Password</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
