@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container">
+
+        @include('inc.messages')
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -15,7 +18,7 @@
                                 <label for="Old password" class="col-md-4 col-form-label text-md-right">{{ __('Old password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="Old password" type="password" class="form-control @error('Old password') is-invalid @enderror" name="oldpassword" value="{{ old('Old password') }}" required autocomplete="Old password" autofocus>
+                                    <input id="old_password" type="password" class="form-control @error('Old password') is-invalid @enderror" name="old_password" value="{{ old('Old password') }}" required autocomplete="Old password" autofocus>
 
                                     @error('Old password')
                                     <span class="invalid-feedback" role="alert">
@@ -29,7 +32,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="new_password" type="password" class="form-control @error('password') is-invalid @enderror" name="new_password" required autocomplete="new-password">
 
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">

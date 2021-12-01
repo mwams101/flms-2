@@ -5,16 +5,11 @@ use App\Models\User;
 use App\Models\UserInformation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserInformationController extends controller
-
 {
-    public function __construct(){
-
-        $this->middleware('auth');
-    }
-
     public function edit(){
 
         $user = Auth::user();
@@ -23,19 +18,54 @@ class UserInformationController extends controller
 
     public function update(Request $request){
         //validation rules
-
-        $request->validate([
+        $rules = [
             'first_name' =>'required|min:4|string|max:255',
             'last_name' =>'required|min:4|string|max:255',
             'email'=>'required|email|string|max:255'
-        ]);
-        $user = Auth::user();
-        $user->userInformation->first_name = $request->input('first_name');
-        $user->userInformation->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
+        ];
 
-        $user->userInformation->update();
-        return redirect('/home')->with('status','INFO Updated Successfully');
+        $validate = Validator::make($request->all(), $rules);
+
+        if($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate->errors()->messages());
+        } else {
+
+            $user = Auth::user(); //get authenticated user
+
+            //validate email
+            if($this->validateEmail($user, $request->get('email'))) {
+                return redirect()->back()
+                    ->with('error', 'Email provided already exists');
+            }
+
+            //update user email
+            $user->update([
+                'email' => $request->get('email'),
+            ]);
+
+            //update user information
+            $user->userInformation()->update($request->only(['first_name', 'last_name']));
+
+            //redirect to home with success message
+            return redirect()->route('home')
+                ->with('success', 'User Information Successfully Updated');
+        }
+    }
+
+    private function validateEmail(User $user, $email) : bool
+    {
+        //get current email
+        $currentEmail = $user->email;
+
+        if(strcmp($currentEmail, $email) !== 0) { //if current email is not equal to given email
+            //check database if user exists with given email
+            if(User::where('email', $email)->first()) { //if email exists
+                return true;
+            }
+        }
+
+        return false;
     }
 
 

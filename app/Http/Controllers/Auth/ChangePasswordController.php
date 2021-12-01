@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Testing\Fluent\Concerns\Has;
 
 class ChangePasswordController extends Controller
@@ -22,23 +23,41 @@ class ChangePasswordController extends Controller
         return view('auth.passwords.change');
     }
 
-    public function changePassword(Request $request){
+    public function changePassword(Request $request)
+    {
+        //validation rules
+        $rules = [
+            'old_password' => 'required|min:8|max:25',
+            'new_password' => 'required|min:8|max:25',
+            'password_confirmation' => 'required|same:new_password'
+        ];
 
-        $this->validate($request,[
-            'oldpassword' => 'required',
-            'password' => 'required|confirmed'
-        ]);
+        //validate request against validation rules
+        $validate = Validator::make($request->all(), $rules);
 
-        $hashedPassword = Auth::user()->password;
-        if(Hash::check($request->oldpassword, $hashedPassword)){
+        if($validate->fails()) { //if validation fails
+            //redirect back with error messages
+            return redirect()->back()
+                ->withErrors($validate->errors()->messages());
+        } else {
 
-            $user = User::find(Auth::id());
-            $user->password = Hash::make($request->password);
-            $user->save();
-            Auth::logout();
-            return redirect('/home')->with('errorMsg','Current password is invalid');
+            //get authenticated user
+            $user = Auth::user();
+
+            //validate current password with old password provided
+            if(Hash::check($request->get('old_password'),
+                $user->password)) { //if old password equals current password
+                //update user password using new password
+                $user->update($request->only(['new_password']));
+
+                //redirect to home with success message
+                return redirect()->route('home')
+                    ->with('success', 'Password successfully updated');
+            }
+
+            //redirect back with error message
+            return redirect()->back()
+                ->with('error', 'Password provided doesn\'t match current password');
         }
-
-
     }
 }
